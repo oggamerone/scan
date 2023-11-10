@@ -231,3 +231,33 @@ input:checked ~ .estrela {
   color: #ff5500;
 }
 
+  /* Estilos padrão para telas maiores que 768px (desktop) */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Estilos para telas menores que 768px (mobile) */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      text-align: center;
+      padding: 10px;
+    }
+    
+    nav {
+      margin-top: 10px;
+    }
+    
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    li {
+      margin: 10px 0;
+    }
+  }
