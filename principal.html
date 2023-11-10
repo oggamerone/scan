@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lunar Scan</title>
+    <link rel="shortcut icon" type="image/png" href="https://i.imgur.com/4TbVREJ.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    
+    <header>
+        <h1>Lunar Scan</h1>
+        <nav>
+            <ul>
+                <li><a href="#obras-andamento">Obras em Andamento</a></li>
+                <li><a href="#obras-concluidas">Obras Concluídas</a></li>
+                <li><a href="#contatos">Contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="discord">
+      <img src="https://i.imgur.com/UbRYWCP.png" alt="Logo da Scan">
+      <a href="https://discord.gg/F5SrsSBF">Discord</a>
+    </div>
+
+    <section id="search">
+        <h2>Pesquisar</h2>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Digite o nome da obra...">
+            <button type="submit">
+                <i class="fas fa-search"></i> <!-- Ícone de pesquisa FontAwesome -->
+            </button>
+        </form>
+    </section>
+
+    <section id="obras-populares">
+        <h2>Obras mais populares</h2>
+        <ul id="lista-obras-populares">
+          <li>
+            <a href="Kalli/Kalli.html">
+            <img src="https://img.lermanga.org/K/kalli-the-champion/capa.jpg" alt="Imagem da Obra 1">
+            <div class="title">Kalli the champion</div>
+            <div class="views"><i class="fas fa-eye"></i> 12453 visualizações</div>
+          </li>
+          <li>
+            <img src="https://img.lermanga.org/0/100-nen-no-oshi/capa.jpg" alt="Imagem da Obra 2">
+            <div class="title">100-nen no oshi</div>
+            <div class="views"><i class="fas fa-eye"></i> 1599 visualizações</div>
+          </li>
+        </ul>
+      </section>
+
+    <section id="obras-recentes">
+        <h2>Obras em andamento.</h2>
+
+        <div class="obra">
+            <a href="Kalli/Kalli.html">
+                <img src="https://img.lermanga.org/K/kalli-the-champion/capa.jpg" alt="Capa da Obra 1">
+                <h3>Kalli the champion</h3>
+                <h2>Ultimo cap lançado: 12</h2>
+            </a>
+        </div>
+
+
+        <div class="obra">
+            <a href="pagina_obra.html=-">
+                <img src="https://img.lermanga.org/0/100-nen-no-oshi/capa.jpg" alt="Capa da Obra 2">
+                <h3>100-nen no oshi</h3>
+                <h2>Ultimo cap lançado: 03</h2>
+            </a>
+        </div>
+
+        <!-- Adicione mais obras recentes conforme necessário -->
+    </section>
+
+    <script>
+// Código JavaScript para lidar com a pesquisa
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("search-form");
+    const searchInput = document.getElementById("search-input");
+    const obras = document.querySelectorAll(".obra");
+
+    searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const searchTerm = searchInput.value.toLowerCase();
+
+        obras.forEach(function (obra) {
+            const obraNome = obra.querySelector("h3").textContent.toLowerCase();
+            
+            if (obraNome.includes(searchTerm)) {
+                obra.style.display = "block"; // Mostrar a obra se corresponder à pesquisa
+            } else {
+                obra.style.display = "none"; // Ocultar a obra se não corresponder à pesquisa
+            }
+        });
+    });
+
+    // Resetar a pesquisa quando o campo de pesquisa estiver vazio
+    searchInput.addEventListener("input", function () {
+        if (searchInput.value.trim() === "") {
+            obras.forEach(function (obra) {
+                obra.style.display = "block"; // Mostrar todas as obras se o campo estiver vazio
+            });
+        }
+    });
+});
+
+// Verifique se já existe uma contagem armazenada no localStorage
+if (localStorage.getItem('visualizacoes')) {
+    var visualizacoes = parseInt(localStorage.getItem('visualizacoes'));
+    visualizacoes++;
+    localStorage.setItem('visualizacoes', visualizacoes);
+} else {
+    // Se não houver contagem, inicie com 1
+    localStorage.setItem('visualizacoes', '1');
+}
+
+// Exiba a contagem de visualizações
+var contador = document.getElementById('contador');
+contador.textContent = localStorage.getItem('visualizacoes');
+
+const chapters = document.querySelectorAll('.chapter');
+
+chapters.forEach((chapter, index) => {
+  chapter.addEventListener('click', () => {
+    const chapterNumber = index + 1;
+    addChapterToStorage(chapterNumber);
+    chapter.classList.add('visited');
+  });
+  chapter.setAttribute('data-chapter', index + 1);
+});
+
+if (!localStorage.getItem('chaptersRead')) {
+  localStorage.setItem('chaptersRead', JSON.stringify([]));
+}
+
+const chapterList = JSON.parse(localStorage.getItem('chaptersRead'));
+chapters.forEach((chapter) => {
+  const chapterNumber = Number(chapter.getAttribute('data-chapter'));
+
+  if (chapterList.includes(chapterNumber)) {
+    chapter.classList.add('visited');
+  }
+});
+
+function addChapterToStorage(chapterNumber) {
+  const chapterList = JSON.parse(localStorage.getItem('chaptersRead'));
+  if (!chapterList.includes(chapterNumber)) {
+    chapterList.push(chapterNumber);
+    localStorage.setItem('chaptersRead', JSON.stringify(chapterList));
+  }
+}
+
+const stars = document.querySelectorAll('input[name="rating"]');
+let selectedRating;
+
+stars.forEach(star => {
+    star.addEventListener('change', () => {
+        selectedRating = star.value;
+
+        // Aqui você pode enviar a classificação para o servidor, por exemplo, via AJAX.
+        // Lembre-se de implementar a lógica do lado do servidor para salvar a classificação.
+    });
+});
+function exibirObrasPopulares(obras) {
+  var lista = document.getElementById("lista-obras-populares");
+
+  // Limpa a lista anterior, se houver
+  lista.innerHTML = "";
+
+  // Ordena as obras com base nas visualizações
+  ordenarObrasPorPopulares(obras);
+
+  // Adiciona a lista de obras ordenada à seção relevante do site
+  obras.slice(0, 5).forEach(function (obra) {
+    var li = document.createElement("li");
+    var img = document.createElement("img");
+    img.src = obra.imagem;
+    img.alt = "Imagem da " + obra.titulo;
+    li.appendChild(img);
+
+    var span = document.createElement("span");
+    span.textContent = obra.titulo + " (" + obra.visualizacoes + " visualizações)";
+    li.appendChild(span);
+
+    lista.appendChild(li);
+  });
+}
+
+function ordenarObrasPorPopulares(obras) {
+  obras.sort(function (a, b) {
+    return b.visualizacoes - a.visualizacoes;
+  });
+}
+
+// Lê o arquivo "obras.json" e chama a função de exibição de obras populares
+fetch("obras.json")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    var obras = data.obras;
+    exibirObrasPopulares(obras);
+  })
+  .catch(function (error) {
+    console.error("Erro ao carregar as obras populares", error);
+  });
+
+
+  // ...
+
+const btnEsconder = document.getElementById("esconder-obras-populares");
+
+// Função para esconder a seção de obras populares ao clicar no botão esconder
+btnEsconder.addEventListener("click", function() {
+  const obrasPopularesSection = document.querySelector(".obras-populares");
+  obrasPopularesSection.style.display = "none";
+  obrasPopularesSection.style.flexWrap = "wrap"; // Adiciona para evitar quebras estranhas
+});
+
+// ...
+  
+    </script>
+</body>
+</html>
