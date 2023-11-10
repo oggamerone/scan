@@ -52,11 +52,11 @@
     <section id="capitulos">
         <h2>Capítulos</h2>
         <ul>
-            <li><a href="capitulo1.html">Capítulo 1</a></li>
-            <li><a href="capitulo2.html">Capítulo 2</a></li>
-            <li><a href="capitulo3.html">Capítulo 3</a></li>
+            <li><a href="capitulo1.html" class="chapter">Capítulo 1</a></li>
+            <li><a href="capitulo2.html" class="chapter">Capítulo 2</a></li>
+            <li><a href="capitulo3.html" class="chapter">Capítulo 3</a></li>
             <!-- Adicione mais capítulos conforme necessário -->
-        </ul>
+          </ul>
 
 
 
@@ -102,6 +102,14 @@
             // Lembre-se de implementar a lógica do lado do servidor para salvar a classificação.
         });
     });
+
+    const chapters = document.querySelectorAll('.chapter');
+
+chapters.forEach(chapter => {
+  chapter.addEventListener('click', () => {
+    chapter.parentElement.classList.add('visited');
+  });
+});
         </script>
     </section>
 

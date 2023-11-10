@@ -35,12 +35,19 @@
                 <h3>Kalli the champion</h3>
             </a>
         </div>
+
         <div class="obra">
-            <a href="pagina_obra.html=-">
-                <img src="https://img.lermanga.org/0/100-nen-no-oshi/capa.jpg" alt="Capa da Obra 2">
-                <h3>100-nen no oshi</h3>
+            <a href="pagina_obra.html=solo-leveling">
+              <div class="thumb">
+                <img src="https://meo.comick.pictures/ZXgN7x-s.jpg" alt="Capa da Obra 1">
+              </div>
+              <div class="info">
+                <h3>Solo Leveling</h3>
+                <p><strong>52 capítulos</strong></p>             
+            </div>
             </a>
-        </div>
+          </div>
+
         <div class="obra">
             <a href="pagina_obra.html=-">
                 <img src="https://img.lermanga.org/0/100-nen-no-oshi/capa.jpg" alt="Capa da Obra 2">
@@ -93,6 +100,65 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+// Verifique se já existe uma contagem armazenada no localStorage
+if (localStorage.getItem('visualizacoes')) {
+    var visualizacoes = parseInt(localStorage.getItem('visualizacoes'));
+    visualizacoes++;
+    localStorage.setItem('visualizacoes', visualizacoes);
+} else {
+    // Se não houver contagem, inicie com 1
+    localStorage.setItem('visualizacoes', '1');
+}
+
+// Exiba a contagem de visualizações
+var contador = document.getElementById('contador');
+contador.textContent = localStorage.getItem('visualizacoes');
+
+const chapters = document.querySelectorAll('.chapter');
+
+chapters.forEach((chapter, index) => {
+  chapter.addEventListener('click', () => {
+    const chapterNumber = index + 1;
+    addChapterToStorage(chapterNumber);
+    chapter.classList.add('visited');
+  });
+  chapter.setAttribute('data-chapter', index + 1);
+});
+
+if (!localStorage.getItem('chaptersRead')) {
+  localStorage.setItem('chaptersRead', JSON.stringify([]));
+}
+
+const chapterList = JSON.parse(localStorage.getItem('chaptersRead'));
+chapters.forEach((chapter) => {
+  const chapterNumber = Number(chapter.getAttribute('data-chapter'));
+
+  if (chapterList.includes(chapterNumber)) {
+    chapter.classList.add('visited');
+  }
+});
+
+function addChapterToStorage(chapterNumber) {
+  const chapterList = JSON.parse(localStorage.getItem('chaptersRead'));
+  if (!chapterList.includes(chapterNumber)) {
+    chapterList.push(chapterNumber);
+    localStorage.setItem('chaptersRead', JSON.stringify(chapterList));
+  }
+}
+
+const stars = document.querySelectorAll('input[name="rating"]');
+let selectedRating;
+
+stars.forEach(star => {
+    star.addEventListener('change', () => {
+        selectedRating = star.value;
+
+        // Aqui você pode enviar a classificação para o servidor, por exemplo, via AJAX.
+        // Lembre-se de implementar a lógica do lado do servidor para salvar a classificação.
+    });
+});
+
     </script>
 </body>
 </html>

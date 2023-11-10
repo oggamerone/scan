@@ -261,3 +261,7 @@ input:checked ~ .estrela {
       margin: 10px 0;
     }
   }
+  .chapter.visited {
+    color: green;
+    font-weight: bold;
+  }
