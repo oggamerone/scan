@@ -279,12 +279,10 @@ input:checked ~ .estrela {
   }
   
   #obra-info table {
-    margin: 10px 0;
+    margin: 5px 0; /* Reduz a margem da tabela */
   }
 
   #obra-info table td {
-    padding: 5px;
-    text-align: center; /* Centraliza o texto nas células da tabela */
-    color: #fff;
+    font-size: 14px; /* Reduz o tamanho da fonte da sinopse */
   }
 }
