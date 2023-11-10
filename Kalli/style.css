@@ -239,7 +239,6 @@ input:checked ~ .estrela {
     padding: 20px;
   }
 }
-
 /* Estilos para telas menores que 768px (mobile) */
 @media (max-width: 767px) {
   header {
@@ -261,9 +260,30 @@ input:checked ~ .estrela {
   li {
     margin: 10px 0;
   }
-}
 
-.chapter.visited {
-  color: green;
-  font-weight: bold;
+  /* Ajustes para a sinopse e a foto no celular */
+  #obra-info {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  #obra-info img {
+    max-width: 100%; /* Ajusta a largura da imagem para ocupar 100% da largura da tela */
+    height: auto;
+    margin-right: 0; /* Remove a margem à direita */
+  }
+
+  #obra-info h2 {
+    margin-bottom: 10px;
+  }
+  
+  #obra-info table {
+    margin: 10px 0;
+  }
+
+  #obra-info table td {
+    padding: 5px;
+    text-align: center; /* Centraliza o texto nas células da tabela */
+    color: #fff;
+  }
 }
