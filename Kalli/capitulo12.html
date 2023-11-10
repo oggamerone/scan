@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kalli the champion</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="https://i.imgur.com/4TbVREJ.png">
+	<style>
+	body {
+			margin: 0;
+			padding: 0;
+			background-color: #272727;
+			font-family: Arial, sans-serif;
+		}
+		.wrapper {
+			display: flex;
+			flex-direction: column;
+			height: 100vh;
+		}
+		.navigation {
+			background-color: #1b1b1b;
+			color: #fff;
+			display: flex;
+			align-items: center;
+			padding: 1rem;
+			position: sticky;
+			top: 0;
+			z-index: 1;
+		}
+		.navigation h1 {
+			margin: 0;
+			padding: 0;
+			font-weight: normal;
+			font-size: 1.5rem;
+			flex-grow: 1;
+		}
+		.navigation ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.navigation li {
+			display: inline-block;
+			margin-left: 1rem;
+		}
+		.navigation a {
+			text-decoration: none;
+			color: #fff;
+			padding-bottom: 2px;
+			border-bottom: 2px solid transparent;
+			transition: border-bottom-color 0.3s ease-in-out;
+		}
+		.navigation a:hover {
+			border-bottom-color: #fff;
+		}
+		.progress-bar {
+			height: 2px;
+			background-color: #fff;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0%;
+			transition: width 0.3s ease-in-out;
+		}
+		.manga-page {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 2rem;
+			position: relative;
+			flex-grow: 1;
+		}
+		.manga-page img {
+			max-width: 100%;
+		}
+		@media (max-width: 768px) {
+			.navigation {
+				font-size: 0.8rem;
+			}
+		}
+		#chapter-selector {
+			border: 2px solid #fff;
+			padding: 0.5rem;
+		}
+		option:checked {
+			background-color: #000;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<header class="navigation">
+			<h1>Kalli the champion-1</h1>
+			<ul>
+				<li><a href="#">Capítulo anterior</a></li>
+				<li><a href="#">Capítulo seguinte</a></li>
+				<li>
+					<select id="chapter-selector">
+						<option value="1">Capítulo 1</option>
+						<option value="2">Capítulo 2</option>
+						<option value="3">Capítulo 3</option>
+					</select>
+				</li>
+			</ul>
+		</header>
+		<div class="manga-page">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/1.png" alt="1">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/2.png" alt="2">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/3.png" alt="3">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/4.png" alt="4">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/5.png" alt="5">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/6.png" alt="6">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/7.png" alt="7">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/8.png" alt="8">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/9.png" alt="9">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/10.png" alt="10">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/11.png" alt="11">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/12.png" alt="12">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/13.png" alt="13">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/14.png" alt="14">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/15.png" alt="15">
+			<img src="C:\Users\Almeida\Desktop\KALIS MANHWA/kallicap12/16.png" alt="16">
+			<div class="progress-bar"></div>
+		</div>
+	</div>
+
+	<script>
+		const chapterUrlMap = { // mapeia o valor do menu dropdown para a URL correspondente
+			'1': 'capitulo1.html',
+			'2': 'capitulo2.html',
+			'3': 'chapter3.html',
+		};
+
+		// Código Javascript para a barra de progresso
+		const progressBar = document.querySelector('.progress-bar');
+		const mangaPage = document.querySelector('.manga-page');
+		let totalHeight = mangaPage.scrollHeight - window.innerHeight;
+
+		window.addEventListener('scroll', () => {
+			const progressHeight = (window.pageYOffset / totalHeight) * 100;
+			progressBar.style.width = `${progressHeight}%`;
+		});
+
+		// Navegação entre capítulos usando a lista dropdown
+		document.querySelector('#chapter-selector').addEventListener('change', event => {
+			window.location.href = chapterUrlMap[event.target.value]; // redireciona para a URL correspondente quando o usuário seleciona um capítulo
+		});
+
+		// Navegação entre capítulos usando os links "Capítulo anterior" e "Capítulo seguinte"
+		const chapterLinks = document.querySelectorAll('.navigation a');
+
+		chapterLinks.forEach(link => {
+			link.addEventListener('click', event => {
+				event.preventDefault();
+				const currentChapterImg = mangaPage.querySelector('img');
+				let currentChapterIndex = parseInt(currentChapterImg.src.slice(-5, -4));
+				if (link.textContent === 'Capítulo anterior') {
+					currentChapterIndex--;
+				} else if (link.textContent === 'Capítulo seguinte') {
+					currentChapterIndex++;
+				}
+				if (currentChapterIndex < 1) {
+					currentChapterIndex = 1;
+				} else if (currentChapterIndex > 3) { // atualize este número para refletir o número total de capítulos
+					currentChapterIndex = 3;
+				}
+				window.location.href = chapterUrlMap[currentChapterIndex]; // redireciona para a URL correspondente ao mudar de capítulo
+			});
+		});
+	</script>
+</body>
+</html>
