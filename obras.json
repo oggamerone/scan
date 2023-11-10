@@ -1,0 +1,22 @@
+{
+    "obras": [
+        {
+            "titulo": "Kalli the champion",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "visualizacoes": 12343,
+            "imagem": "https://img.lermanga.org/K/kalli-the-champion/capa.jpg"
+        },
+        {
+            "titulo": "100-nen no oshi",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "visualizacoes": 32344,
+            "imagem": "caminho/da/imagem2.jpg"
+        },
+        {
+            "titulo": "Obra 3",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "visualizacoes": 21,
+            "imagem": "caminho/da/imagem3.jpg"
+        }
+    ]
+}
