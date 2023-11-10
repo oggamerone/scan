@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lunar Scan</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Lunar Scan</h1>
+        <nav>
+            <ul>
+                <li><a href="#obras-andamento">Obras em Andamento</a></li>
+                <li><a href="#obras-concluidas">Obras Concluídas</a></li>
+                <li><a href="#contatos">Contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="search">
+        <h2>Pesquisar</h2>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Digite o nome da obra...">
+            <button type="submit">
+                <i class="fas fa-search"></i> <!-- Ícone de pesquisa FontAwesome -->
+            </button>
+        </form>
+    </section>
+
+    <section id="obras-recentes">
+        <h2>Obras em andamento.</h2>
+        <div class="obra">
+            <a href="Kalli/Kalli.html">
+                <img src="https://img.lermanga.org/K/kalli-the-champion/capa.jpg" alt="Capa da Obra 1">
+                <h3>Kalli the champion</h3>
+            </a>
+        </div>
+        <div class="obra">
+            <a href="pagina_obra.html=-">
+                <img src="https://img.lermanga.org/0/100-nen-no-oshi/capa.jpg" alt="Capa da Obra 2">
+                <h3>100-nen no oshi</h3>
+            </a>
+        </div>
+        <div class="obra">
+            <a href="pagina_obra.html=-">
+                <img src="https://img.lermanga.org/0/100-nen-no-oshi/capa.jpg" alt="Capa da Obra 2">
+                <h3>100-nen no oshi</h3>
+            </a>
+        </div>
+        <div class="obra">
+            <a href="pagina_obra.html=-">
+                <img src="https://img.lermanga.org/0/100-nen-no-oshi/capa.jpg" alt="Capa da Obra 2">
+                <h3>100-nen no oshi</h3>
+            </a>
+        </div>
+        <div class="obra">
+            <a href="pagina_obra.html=-">
+                <img src="https://img.lermanga.org/0/100-nen-no-oshi/capa.jpg" alt="Capa da Obra 2">
+                <h3>100-nen no oshi</h3>
+            </a>
+        </div>
+        <!-- Adicione mais obras recentes conforme necessário -->
+    </section>
+
+    <script>
+// Código JavaScript para lidar com a pesquisa
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("search-form");
+    const searchInput = document.getElementById("search-input");
+    const obras = document.querySelectorAll(".obra");
+
+    searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const searchTerm = searchInput.value.toLowerCase();
+
+        obras.forEach(function (obra) {
+            const obraNome = obra.querySelector("h3").textContent.toLowerCase();
+            
+            if (obraNome.includes(searchTerm)) {
+                obra.style.display = "block"; // Mostrar a obra se corresponder à pesquisa
+            } else {
+                obra.style.display = "none"; // Ocultar a obra se não corresponder à pesquisa
+            }
+        });
+    });
+
+    // Resetar a pesquisa quando o campo de pesquisa estiver vazio
+    searchInput.addEventListener("input", function () {
+        if (searchInput.value.trim() === "") {
+            obras.forEach(function (obra) {
+                obra.style.display = "block"; // Mostrar todas as obras se o campo estiver vazio
+            });
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

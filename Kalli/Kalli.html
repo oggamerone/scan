@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Kalli the champion</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="../index.html" id="btn-voltar">Home</a>
+        <h1>Kalli the champion</h1>
+    </header>
+
+    <section id="obra-info">
+        <div class="obra-details">
+            <img src="https://img.lermanga.org/K/kalli-the-champion/capa.jpg" id="capa" alt="Capa da Obra">
+        </div>
+        <div class="obra-details">
+            <h2>Kalli the champion</h2>
+            <table>
+                <tr>
+                    <td>Ano:</td>
+                    <td>2023</td>
+                </tr>
+                <tr>
+                    <td>Tipo:</td>
+                    <td>Manhwa</td>
+                </tr>
+                <tr>
+                    <td>Gêneros:</td>
+                    <td>Ação, Aventura, Comédia</td>
+                </tr>
+            </table>
+            <p>Após desistir de seu sonho como boxeador, Park Kang-tae ingressou em uma gangue. Ele era muito conhecido dentro da gangue, mas acabou sendo morto no final. Ele tinha um arrependimento quando morreu — ter desistido de seu sonho como boxeador. Será que Deus sabia desse arrependimento? Em um mundo onde o boxe existe na forma de jogos pugilistas, Park Kang-tae busca seu sonho não realizado.</p>
+            <div class="rating">
+                <input type="radio" name="rating" id="star5" value="5">
+                <label for="star5"></label>
+                <input type="radio" name="rating" id="star4" value="4">
+                <label for="star4"></label>
+                <input type="radio" name="rating" id="star3" value="3">
+                <label for="star3"></label>
+                <input type="radio" name="rating" id="star2" value="2">
+                <label for "star2"></label>
+                <input type="radio" name="rating" id="star1" value="1">
+                <label for="star1"></label>
+                <button id="btn-avaliar">Avaliar</button>
+            </div>
+            
+    </section>
+
+    <section id="capitulos">
+        <h2>Capítulos</h2>
+        <ul>
+            <li><a href="capitulo1.html">Capítulo 1</a></li>
+            <li><a href="capitulo2.html">Capítulo 2</a></li>
+            <li><a href="capitulo3.html">Capítulo 3</a></li>
+            <!-- Adicione mais capítulos conforme necessário -->
+        </ul>
+
+
+
+        <section id="comentarios">
+            <h2>Comentários</h2>
+            <div id="comentarios-lista">
+              <!-- comentários são carregados dinamicamente aqui -->
+            </div>
+            <form id="formulario-comentario">
+              <h3>Deixe um comentário</h3>
+              <input type="text" id="nome" placeholder="Nome">
+              <textarea id="conteudo" placeholder="Digite seu comentário"></textarea>
+              <button type="submit">Enviar</button>
+            </form>
+          </section>
+
+
+
+        <script>
+            // Verifique se já existe uma contagem armazenada no localStorage
+            if (localStorage.getItem('visualizacoes')) {
+                var visualizacoes = parseInt(localStorage.getItem('visualizacoes'));
+                visualizacoes++;
+                localStorage.setItem('visualizacoes', visualizacoes);
+            } else {
+                // Se não houver contagem, inicie com 1
+                localStorage.setItem('visualizacoes', '1');
+            }
+    
+            // Exiba a contagem de visualizações
+            var contador = document.getElementById('contador');
+            contador.textContent = localStorage.getItem('visualizacoes');
+
+
+            const stars = document.querySelectorAll('input[name="rating"]');
+    let selectedRating;
+
+    stars.forEach(star => {
+        star.addEventListener('change', () => {
+            selectedRating = star.value;
+
+            // Aqui você pode enviar a classificação para o servidor, por exemplo, via AJAX.
+            // Lembre-se de implementar a lógica do lado do servidor para salvar a classificação.
+        });
+    });
+        </script>
+    </section>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+/* Estilos gerais */
+body {
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  a {
+    color: #fff;
+  }
+  
+  a:hover {
+    color: #ffdb58;
+  }
+  
+  header {
+    background-color: #131313;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin: 0;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  nav a {
+    font-size: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  
+  nav a:hover {
+    color: #ffdb58;
+  }
+  
+  section {
+    padding: 40px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  
+  #search-form {
+    display: flex;
+  }
+  
+  #search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+  }
+  
+  #search-input::placeholder {
+    color: #aaa;
+  }
+  
+  #search-form button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  #search-form button:hover {
+    color: #ffdb58;
+  }
+  
+  .obras-recentes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  .obra {
+    float: left;
+    margin: 10px;
+    text-align: center;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    width: 200px;
+    height: 400px;
+}
+  
+  .obra h3 {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .obra a {
+    display: block;
+  }
+  
+  .obra img {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+  }
+  
+/* Adicionado estilo para obra em hover */
+.obra:hover {
+    background-color: #555;
+    transform: scale(1.10); /* Aumenta a escala em 10% */
+}
+
+.obra a:hover {
+    color: #ff6600;
+}
